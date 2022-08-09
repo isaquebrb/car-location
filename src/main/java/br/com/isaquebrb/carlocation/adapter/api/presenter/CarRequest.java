@@ -1,6 +1,5 @@
 package br.com.isaquebrb.carlocation.adapter.api.presenter;
 
-import br.com.isaquebrb.carlocation.core.domain.Car;
 import lombok.Getter;
 
 import javax.validation.constraints.NotBlank;
@@ -21,13 +20,4 @@ public class CarRequest {
 
     @NotBlank
     private String ownerId;
-
-    public Car toDomain() {
-        return Car.builder()
-                .name(name)
-                .model(model)
-                .brand(brand)
-                .identificationNumber(identificationNumber)
-                .build();
-    }
 }

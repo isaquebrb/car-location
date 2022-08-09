@@ -1,6 +1,7 @@
 package br.com.isaquebrb.carlocation.adapter.api.controller;
 
 import br.com.isaquebrb.carlocation.adapter.api.presenter.CarRequest;
+import br.com.isaquebrb.carlocation.application.mapper.CarMapper;
 import br.com.isaquebrb.carlocation.core.domain.Car;
 import br.com.isaquebrb.carlocation.core.usecase.CreateCarUseCase;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class CarController {
 
     @PostMapping
     public ResponseEntity<Car> createCar(@RequestBody @Valid CarRequest carRequest) {
-        Car car = carRequest.toDomain();
+        Car car = CarMapper.toDomain(carRequest);
         return ResponseEntity.ok(createCarUseCase.createCar(car, carRequest.getOwnerId()));
     }
 }

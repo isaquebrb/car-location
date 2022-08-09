@@ -1,23 +1,26 @@
 package br.com.isaquebrb.carlocation.core.domain;
 
-import lombok.Builder;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Builder
+@Setter
 @Getter
 public class Customer {
 
-	private String id;
+    private String id;
 
-	private String name;
+    private String name;
 
-	private String identificationDocument;
+    private String identificationDocument;
 
-	private String email;
+    private String email;
 
-	private String phone;
+    private String phone;
 
-	private List<Car> cars;
+    @Setter(AccessLevel.NONE)
+    private List<Car> cars = new ArrayList<>();
 }

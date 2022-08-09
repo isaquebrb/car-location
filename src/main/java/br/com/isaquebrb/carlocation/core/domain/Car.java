@@ -1,10 +1,9 @@
 package br.com.isaquebrb.carlocation.core.domain;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Builder
+@Setter
 @Getter
 public class Car {
 
@@ -18,6 +17,5 @@ public class Car {
 
     private String identificationNumber;
 
-    @Setter
     private Customer owner;
 }

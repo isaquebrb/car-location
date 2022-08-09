@@ -1,10 +1,9 @@
 package br.com.isaquebrb.carlocation.adapter.persistence.entity;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Builder
+@Setter
 @Getter
 public class CarEntity {
 
@@ -18,6 +17,5 @@ public class CarEntity {
 
     private String identificationNumber;
 
-    @Setter
     private CustomerEntity owner;
 }

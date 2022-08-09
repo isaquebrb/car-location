@@ -1,26 +1,43 @@
 package br.com.isaquebrb.carlocation.application.mapper;
 
+import br.com.isaquebrb.carlocation.adapter.api.presenter.CustomerRequest;
 import br.com.isaquebrb.carlocation.adapter.persistence.entity.CustomerEntity;
-import br.com.isaquebrb.carlocation.core.domain.Car;
 import br.com.isaquebrb.carlocation.core.domain.Customer;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public interface CustomerMapper {
 
-    static Customer toDomain(CustomerEntity entity) {
-        List<Car> cars = entity.getCars().stream()
-                .map(CarMapper::toDomain)
-                .collect(Collectors.toList());
+    static Customer toDomain(CustomerRequest customerRequest) {
+        Customer customer = new Customer();
+        customer.setName(customerRequest.getName());
+        customer.setIdentificationDocument(customer.getIdentificationDocument());
+        customer.setEmail(customerRequest.getEmail());
+        customer.setPhone(customerRequest.getPhone());
+        return customer;
+    }
 
-        return Customer.builder()
-                .id(entity.getId())
-                .name(entity.getName())
-                .identificationDocument(entity.getIdentificationDocument())
-                .email(entity.getEmail())
-                .phone(entity.getPhone())
-                .cars(cars)
-                .build();
+    static Customer toDomain(CustomerEntity customerEntity) {
+        Customer customer = new Customer();
+        customer.setId(customerEntity.getId());
+        customer.setName(customerEntity.getName());
+        customer.setIdentificationDocument(customerEntity.getIdentificationDocument());
+        customer.setEmail(customerEntity.getEmail());
+        customer.setPhone(customerEntity.getPhone());
+
+        customerEntity.getCars()
+                .forEach(entity -> customer.getCars().add(CarMapper.toDomain(entity)));
+
+        return customer;
+    }
+
+    static CustomerEntity toDomain(Customer customer) {
+        CustomerEntity customerEntity = new CustomerEntity();
+        customerEntity.setName(customer.getName());
+        customerEntity.setIdentificationDocument(customer.getIdentificationDocument());
+        customerEntity.setEmail(customer.getEmail());
+        customerEntity.setPhone(customer.getPhone());
+
+        customer.getCars()
+                .forEach(car -> customerEntity.getCars().add(CarMapper.toEntity(car)));
+        return customerEntity;
     }
 }

@@ -12,7 +12,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ElasticsearchClientConfig {
 
-    @Bean
+    //todo implement
+    /*@Bean
     public ElasticsearchClient elasticsearchClient() {
         RestClient httpClient = RestClient.builder(
                 new HttpHost("localhost", 9200)).build();
@@ -21,5 +22,5 @@ public class ElasticsearchClientConfig {
                 httpClient, new JacksonJsonpMapper());
 
         return new ElasticsearchClient(transport);
-    }
+    }*/
 }

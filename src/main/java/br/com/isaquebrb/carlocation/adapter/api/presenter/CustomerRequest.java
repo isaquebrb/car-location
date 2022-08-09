@@ -1,6 +1,5 @@
 package br.com.isaquebrb.carlocation.adapter.api.presenter;
 
-import br.com.isaquebrb.carlocation.core.domain.Customer;
 import lombok.Getter;
 
 import javax.validation.constraints.Email;
@@ -19,12 +18,4 @@ public class CustomerRequest {
     private String email;
 
     private String phone;
-
-    public Customer toDomain() {
-        return Customer.builder()
-                .name(name)
-                .identificationDocument(identificationDocument)
-                .email(email)
-                .phone(phone).build();
-    }
 }

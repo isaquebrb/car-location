@@ -1,6 +1,7 @@
 package br.com.isaquebrb.carlocation.adapter.api.controller;
 
 import br.com.isaquebrb.carlocation.adapter.api.presenter.CustomerRequest;
+import br.com.isaquebrb.carlocation.application.mapper.CustomerMapper;
 import br.com.isaquebrb.carlocation.core.domain.Customer;
 import br.com.isaquebrb.carlocation.core.usecase.CreateCustomerUseCase;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class CustomerController {
 
     @PostMapping
     public ResponseEntity<Customer> createCustomer(@RequestBody @Valid CustomerRequest customerRequest) {
-        Customer customer = customerRequest.toDomain();
+        Customer customer = CustomerMapper.toDomain(customerRequest);
         return ResponseEntity.ok(createCustomerUseCase.createCustomer(customer));
     }
 }
