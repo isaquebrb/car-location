@@ -9,7 +9,7 @@ public interface CustomerMapper {
     static Customer toDomain(CustomerRequest customerRequest) {
         Customer customer = new Customer();
         customer.setName(customerRequest.getName());
-        customer.setIdentificationDocument(customer.getIdentificationDocument());
+        customer.setIdentificationDocument(customerRequest.getIdentificationDocument());
         customer.setEmail(customerRequest.getEmail());
         customer.setPhone(customerRequest.getPhone());
         return customer;

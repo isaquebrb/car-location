@@ -15,12 +15,8 @@ public class GetCustomerService implements GetCustomerUseCase {
 
     @Override
     public Customer getCustomer(String id) {
-        CustomerEntity entity = getCustomerEntity(id);
-        return CustomerMapper.toDomain(entity);
-    }
-
-    public CustomerEntity getCustomerEntity(String id) {
-        return customerRepository.findById(id).orElseThrow(() ->
+        CustomerEntity entity = customerRepository.findById(id).orElseThrow(() ->
                 new NotFoundException("Customer entity id " + id + " not found"));
+        return CustomerMapper.toDomain(entity);
     }
 }
